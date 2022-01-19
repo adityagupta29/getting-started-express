@@ -17,10 +17,11 @@ app.listen(3000, () => {
   console.log(`App is listening at http://localhost:${port}`)
 })
 
-3.  Bodyparser and directory setup
+3.  Install bodyparser(npm i body-parser) and directory setup
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(express.static(__dirname + '/public'))
 
 4. Insert your html, css, js file in public directory inside your main application folder
 
