@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log(`App is listening at http://localhost:${port}`)
+  console.log(`App is listening at http://localhost:3000`)
 })
 
 3.  Install bodyparser(npm i body-parser) and directory setup
@@ -37,5 +37,65 @@ app.get('/', (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log(`App is listening at http://localhost:${port}`)
+  console.log(`App is listening at http://localhost:3000`)
 })
+
+6. Using EJS(Initialization)
+
+const ejs = require('ejs')
+
+app.set('view engine', 'ejs');
+
+Variable - <%=variableName%>
+
+Data Send -  res.render('index', {variableName: "Home"})
+
+7. Using MYSQL  
+
+const mysql = require('mysql');
+
+const db = mysql.createConnection({
+    host    :   'localhost',
+    user    :   'root',
+    password    :    '',
+    database    :   'dataBaseName'
+});
+
+db.connect((err) => {
+    if(err){
+        throw err;
+    }
+    console.log('MySql Connected');
+});
+
+Creating Database-
+
+  let sql = 'CREATE DATABASE dataBaseName';
+  db.query(sql, (err, result) => {
+      if(err) throw err;
+      console.log(result);
+      console.log('Database Created');
+  });
+
+Creating Table-
+
+    let sql = 'CREATE TABLE tableName(id int AUTO_INCREMENT, NAME VARCHAR(255), EMAIL VARCHAR(255), PRIMARY KEY(id))';
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        console.log(result);
+        console.log('Table Created');
+    });
+
+app.post('/', (req, res) => {
+    const name = req.body.name;
+    const email = req.body.email;
+    
+    let data = {NAME: name, EMAIL: email};
+    let sql = 'INSERT INTO tableName SET ?';
+    let query = db.query(sql, data, (err, result) => {
+        if(err) throw err;
+        console.log(result);
+        res.render('submit', {name:name});
+    });
+})
+
