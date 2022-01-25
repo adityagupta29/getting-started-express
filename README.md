@@ -4,9 +4,9 @@ Make sure that you have node.js install on your computer.
 
 1. Install express module(npm i express)
 
-2. Setup
+2. Setup-
 
-const express = require('express')
+`const express = require('express')
 const app = express()
 
 app.get('/', (req, res) => {
@@ -14,8 +14,8 @@ app.get('/', (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log(`App is listening at http://localhost:3000`)
-})
+  console.log("App is listening at http://localhost:3000")
+})`
 
 3.  Install bodyparser(npm i body-parser) and directory setup
 
